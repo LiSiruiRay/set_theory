@@ -1,0 +1,65 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper, left=1in, right=1in, top=1.5in, bottom=1.5in]{geometry}
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+\usepackage{raynotes}  % Load the custom package
+
+\title{Notes on Set Theory}
+\author{Ray Li}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage\
+\input{6_cardinal_number/chap6.tex}
+% \input{4_inductive_def/chap4.tex}
+% \section{Chapter 1: Basic Concepts}
+
+% \begin{question}
+% What is the difference between operational and denotational semantics?
+% \end{question}
+
+% \begin{answer}
+% Operational semantics provides a step-by-step procedure to evaluate a program, effectively describing how the program executes. Denotational semantics, on the other hand, maps each program to a mathematical object, often focusing on what the program computes rather than how.
+% \end{answer}
+
+% \begin{comment}
+% This is an important distinction because operational semantics is more intuitive but may lack the mathematical rigor found in denotational semantics.
+% \end{comment}
+
+% \begin{question}
+% Explain the use of abstract syntax in defining programming languages.
+% \end{question}
+
+% \begin{answer}
+% Abstract syntax ignores details like parentheses and focuses on the structure of the expressions. For example, in arithmetic, \( e \rightarrow e + e \) is a rule that defines an expression without caring about the concrete appearance of parentheses.
+% \end{answer}
+
+% \begin{comment}
+% I think abstract syntax trees (ASTs) provide an easy way to implement compilers by focusing on structure instead of syntax.
+% \end{comment}
+
+% \raynote{I need to explore more about the connection between operational semantics and compiler design.}
+
+% \newpage
+% \section{Chapter 2: Inductive Definitions}
+
+% \begin{question}
+% How can inductive definitions be used to define programming language semantics?
+% \end{question}
+
+% \begin{answer}
+% Inductive definitions allow us to define objects step by step. In programming languages, they are used to define the structure of programs (syntax) and the way programs are evaluated (semantics). An example is defining valid expressions in a language using base cases and recursive steps.
+% \end{answer}
+
+% \begin{comment}
+% Inductive definitions seem to be particularly useful when defining operational semantics.
+% \end{comment}
+
+\newpage
+\section{Ray's Notes Summary}
+\printraynotes
+
+\end{document}

@@ -1,0 +1,113 @@
+\subsection{Excercise Answers}
+% \subsection{3.1 Mathematical induction Excercise Answers}
+
+% \begin{question} (E3.2) \\ 
+%     A string is a sequence of symbols. A string $a_1 a_2 \cdots a_n$ with $n$ positions occupied by symbols is said to have \textit{length} $n$. A string can be empty in which case it is said to have length 0. Two strings $s$ and $t$ can be concatenated to form the string $st$. Use mathematical induction to show there is no string $u$ which satisfies $au = ub$ for two distinct symbols $a$ and $b$.
+% \end{question}
+
+% \begin{proof}
+%     by induction on the length of \( u \)
+
+% Let \( A = \{n \mid \text{len}(u) = n \text{ and } au \neq ub \} \).
+
+% \begin{enumerate}
+%     \item Base Case:
+%     \begin{itemize}
+%         \item \( 0 \in A \): By the hypothesis, since \( a \neq b \), it is clear that when \( u \) is the empty string (i.e., length 0), \( au \neq ub \). Thus, \( 0 \in A \).
+%         \item \( 1 \in A \): If \( u \) has length 1, it is easy to see that \( au \neq ub \) because \( a \neq b \).
+%     \end{itemize}
+
+%     \item Inductive Step:
+%     Assume \( n \in A \). We want to show that \( n + 1 \in A \) for \( n \geq 1 \).
+
+%     Proof by contradiction:
+%     Suppose \( \text{len}(u) = n + 1 \) and \( au = ub \). Since \( n + 1 \geq 2 \), we can write \( u = qu' \), where \( \text{len}(q) = 1 \). Thus, \( au = aqu' \) and \( ub = qu'b \), leading to the equation \( aqu' = qu'b \).
+    
+%     From this, we deduce that \( a = q \). By eliminating the leftmost characters, we are left with \( qu' = u'b \). Since \( q = a \), the equation becomes \( au' = u'b \), where \( \text{len}(u') = n \). By the induction hypothesis, \( au'p \neq u'pb \), leading to a contradiction.
+
+%     Therefore, \( n + 1 \in A \).
+% \end{enumerate}
+
+% By mathematical induction, we conclude that there is no string \( u \) such that \( au = ub \) for two distinct symbols \( a \) and \( b \).
+
+% \end{proof}
+
+% \begin{question} (E3.6) \\
+%     What goes wrong when you try to prove the execution of commands is deterministic by using structural induction on commands?
+% \end{question}
+% % \begin{proposition}
+% %     \textbf{Proposition 2.8} Let \( w \equiv \text{while } b \, \text{do} \, c \) with \( b \in \text{Bexp}, c \in \text{Com} \). Then
+% %     \[
+% %     w \sim \text{if } b \, \text{then } c;w \, \text{else skip}.
+% %     \]
+% % \end{proposition}
+
+% \begin{proof}
+%     The issue arises in verifying the \textbf{while} rule. By the \textbf{Rules for While-loops}, we aim to show that:
+% \[
+% \langle \textbf{while } b \, \textbf{do} \, c, \sigma \rangle \to \sigma_1 \quad \text{and} \quad \langle \textbf{while } b \, \textbf{do} \, c, \sigma \rangle \to \sigma_2 \implies \sigma_1 = \sigma_2
+% \]
+% When \( \langle b, \sigma \rangle \to \text{false} \), there is no problem. However, the issue emerges when \( \langle b, \sigma \rangle \to \text{true} \).
+
+% To argue this, we use \textbf{Proposition 2.8} (\(\textbf{while } b \, \textbf{do} \, c \sim \textbf{if } b \, \textbf{then } c;w \, \textbf{else skip}\)). This allows us to simplify the verification to:
+% \[
+% \langle \textbf{if } b \, \textbf{then} \, c;w \, \textbf{else skip}, \sigma \rangle \to \sigma_1 \quad \textbf{and} \quad \langle \textbf{if } b \, \textbf{then} \, c;w \, \text{else skip}, \sigma \rangle \to \sigma_2 \implies \sigma_1 = \sigma_2
+% \]
+% However, if we attempt to use structural induction, we would need to assume something smaller or a predecessor of \( w \). Yet, in each "previous" case, we still need to argue about \( w \) itself (rather than a predecessor or a smaller set). Therefore, it is not possible to prove this by structural induction.
+
+% \end{proof}
+% \raynote{
+%     Here there exists two kind of structural induction. Or more specifically one is structural induction and the other one is direvation induction. They are some subtle differences between the two. Not to confuse with the proof for Theorem 3.11 in the book. The structural induction here refers to a way of "syntax deviding", like how you proof arithmetic ones from the definition of \[
+%         a ::= n \mid X \mid a_0 + a_1 \mid a_0 - a_1 \mid a_0 \times a_1.
+%         \]
+%     by each case (here the case refers to $n$, $a_0$, etc.). Yet the direvation induction is refers the different rules (here the case is one kind of rule.). \\
+%     This is formally mentioned in Page 33.
+% }
+
+% \begin{question} (E 3.8)
+%     Let \( \prec \) be a well-founded relation on a set \( B \). Prove
+%     \begin{enumerate}
+%         \item its transitive closure \( \prec^+ \) is also well-founded,
+%         \item its reflexive, transitive closure \( \prec^* \) is a partial order.
+%     \end{enumerate}
+% \end{question}
+
+% \begin{proof}
+%     \text{1. The transitive closure \( \prec^+ \) is well-founded:}
+
+% proof by way of contradiction (BWOC). Assume there exists an infinite chain:
+% \[
+% \cdots \prec^+ a_{n+1} \prec^+ a_n \prec^+ \cdots
+% \]
+% Now, pick an element \( a_k \), and \( \exists b \prec^+ a_k \) such that \( b \prec a_k \), call such $b$ \(a_{k+1}\) . If no such \( b \) exists, we would have \( \forall b, a_k \prec b \), which contradicts the assumption of an infinite descending chain. By continuing this process, we can pick an infinite chain of \( \prec \), which contradicts the well-foundedness of \( \prec \). Hence, \( \prec^+ \) is well-founded.
+
+% 2. The reflexive, transitive closure \( \prec^* \) is a partial order:
+
+% By the definition of a partial order, we need to show that the relation is reflexive, antisymmetric, and transitive. Since \( \prec^* \) is already reflexive and transitive by definition, we only need to prove antisymmetry.
+
+% BWOC. : Assume there exist \( a, b \in B \) such that \( a \prec^* b \) and \( b \prec^* a \), yet \( a \neq b \). If \( a \neq b \), then it must be the case that either \( a \prec^* b \) or \( b \prec^* a \), but not both. This leads to a contradiction, hence \( a = b \). Therefore, \( \prec^* \) is antisymmetric, and thus a partial order.
+
+% \end{proof}
+
+% % \subsubsection{3.2 Structural induction Excercise Answers}
+
+% \begin{question} (E 3.9)
+%     For a suitable well-founded relation on strings, use the "no counterexample" approach described above to show there is no string \( u \) which satisfies \( au = ub \) for two distinct symbols \( a \) and \( b \). Compare your proof with another by well-founded induction (and with the proof by mathematical induction asked for in Section 3.1).
+% \end{question}
+% \begin{proof}
+%     Define \( \prec \) as a relation on the set \( U \times U \) (the Cartesian product of the set of strings \( U \)) such that for two strings \( a \) and \( b \), if \( \text{len}(a) < \text{len}(b) \), then \( a \prec b \).
+
+% \textit{Claim:} \( \prec \) is well-founded on the set of strings: we can identify the minimum element, which is the empty string (having length 0).
+
+% Thus, we form the set \( A = \{ u \mid au = ub, \text{ for all } a \neq b \} \). We aim to show that such a set does not exist.
+
+% (BWOC): Assume \( A \) exists. Since \( A \subseteq U \), there exists a smallest element, call it \( u \), such that \( au = ub \). By the argument in \textit{E 3.2}, we know that \( \text{len}(u) \neq 0, 1 \). Therefore, we can write \( u = pu' \), where \( \text{len}(p) = 1 \).
+
+% Thus, \( apu' = pu'b \), implying \( a = p \). This gives us \( apu' = au'b \), and by removing the leftmost characters, we get \( pu' = u'b \), where \( p = a \). Hence, \( au' = u'b \), where \( \text{len}(u') < \text{len}(u) \), contradicting the assumption that \( u \) is the smallest element in \( A \).
+
+% From here, we can argue in two ways:
+% \begin{enumerate}
+%     \item Directly conclude that this leads to a contradiction, thus proving the theorem.
+%     \item Alternatively, we can state that no minimum element exists in \( A \), meaning that \( \prec \) is not well-founded on \( A \). Hence, the theorem is proven.
+% \end{enumerate}
+% \end{proof}

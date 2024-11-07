@@ -1,0 +1,82 @@
+\ProvidesPackage{raynotes}[2024/10/16 Ray's LaTeX Package for Notes]
+
+% ---- Package Options ----
+\newif\ifrayserif \rayseriffalse  % Option to use serif font
+\newif\ifrayindent \rayindenttrue  % Option to control paragraph indent
+
+% Handle user options
+\DeclareOption{serif}{\rayseriftrue}
+\DeclareOption{noindent}{\rayindentfalse}
+
+% Process options
+\ProcessOptions*
+
+% ---- Font Settings ----
+\ifrayserif
+    \usepackage{lmodern} % Use serif fonts
+\else
+    \usepackage{cmbright} % Use sans-serif fonts
+\fi
+
+% Disable paragraph indentation if noindent is passed
+\ifrayindent
+    \setlength{\parindent}{15pt} % Standard paragraph indent
+\else
+    \setlength{\parindent}{0pt} % No paragraph indent
+\fi
+
+% ---- Standard Packages ----
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{color}  % For text coloring
+
+% ---- Custom Question, Answer, and Comment Environments ----
+% Define a framed environment for Questions, Answers, and Comments
+\usepackage{mdframed}
+\usepackage{xcolor}
+
+% Define styles for each environment
+\newcommand{\envboxstyle}[3]{%
+    \mdfdefinestyle{#1}{%
+        linecolor=#2, backgroundcolor=#3,%
+        innertopmargin=10pt, innerbottommargin=10pt,%
+        innerleftmargin=10pt, innerrightmargin=10pt,%
+        linewidth=1pt
+    }%
+}
+
+% Define colors and styles for environments
+\envboxstyle{questionstyle}{blue!70!black}{cyan!5}
+\envboxstyle{answerstyle}{green!50!black}{green!5}
+\envboxstyle{commentstyle}{orange!90!black}{orange!10}
+
+% Create environments for Questions, Answers, and Comments
+\newmdtheoremenv[style=questionstyle]{question}{Question}
+\newmdtheoremenv[style=answerstyle]{answer}{Answer}
+\newmdtheoremenv[style=commentstyle]{comment}{Comment}
+
+% ---- Utility Commands ----
+% \newcounter{raynoteCounter}
+% \newcounter{totalRayNotes}  % Initialize total notes counter
+\newcounter{raynoteCounter}  % Counter to track notes
+\newcounter{totalRayNotes}
+\newcommand{\raynote}[1]{%
+    \refstepcounter{raynoteCounter}%
+    \label{raynote\arabic{raynoteCounter}}% Add a unique label for the note
+    \expandafter\gdef\csname raynote\arabic{raynoteCounter}\endcsname{%
+        \textbf{[Ray's Note \arabic{raynoteCounter} (Page~\pageref{raynote\arabic{raynoteCounter}}): #1]}%
+    }%
+    \textbf{[Ray's Note \arabic{raynoteCounter}: #1]}%
+    \setcounter{totalRayNotes}{\value{raynoteCounter}}%
+}
+
+
+\newcommand{\printraynotes}{%
+    \setcounter{raynoteCounter}{1}%
+    \loop%
+        \csname raynote\arabic{raynoteCounter}\endcsname\par%
+        \stepcounter{raynoteCounter}%
+    \ifnum\value{raynoteCounter}<\numexpr\value{totalRayNotes}+1\relax%
+    \repeat%
+}

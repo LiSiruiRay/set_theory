@@ -1,0 +1,4 @@
+\contentsline {section}{\numberline {1}Chapter 6: Cardinal Numbers and The Axim of Choice}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Material Notes}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Excercise Answers}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Ray's Notes Summary}{3}{section.2}%

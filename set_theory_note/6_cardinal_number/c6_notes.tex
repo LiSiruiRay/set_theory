@@ -1,0 +1,22 @@
+\subsection{Material Notes}
+
+In the Book Page 134 to 135, while proving the case 1, the book mentioned
+
+% \textbf{Definitions:}
+\begin{quote}
+    \textbf{Pigeonhole Principle:} No natural number is equinumerous to a proper subset of itself.
+
+    \textbf{Proof} Assume that \(f\) is a one-to-one function from the set \(n\) into the set \(n\). We will show that \(\text{ran} f\) is all of the set \(n\) (and not a proper subset of \(n\)). This suffices to prove the theorem.
+    We use induction on \(n\). Define:
+    \[
+    T = \{ n \in \omega \mid \text{any one-to-one function from } n \text{ into } n \text{ has range } n \}.
+    \]
+    Then \(0 \in T\); the only function from the set \(0\) into the set \(0\) is \(\emptyset\) and its range is the set \(0\). Suppose that \(k \in T\) and that \(f\) is a one-to-one function from the set \(k^+\) into the set \(k^+\). We must show that the range of \(f\) is all of the set \(k^+\); this will imply that \(k^+ \in T\). Note that the restriction \(f \upharpoonright k\) of \(f\) to the set \(k\) maps the set \(k\) one-to-one into the set \(k^+\).
+
+    \textbf{Case 1} Possibly the set \(k\) is closed under \(f\). Then \(f \upharpoonright k\) maps the set \(k\) into the set \(k\). Then because \(k \in T\) we may conclude that \(\text{ran} (f \upharpoonright k)\) is all of the set \(k\). Since \(f\) is one-to-one, the only possible value for \(f(k)\) is the number \(k\). Hence \(\text{ran} f\) is \(k \cup \{k\}\), which is the set \(k^+\).  
+\end{quote}
+\raynote{
+    Here the \textbf{Case 1} should have more explanation: \\
+    We know that \(k\) is closed under \(f\) and \(\text{ran} (f \upharpoonright k) = k\). Then why do we have \(\text{ran} f = k \cup \{k\}\)? This is because of the following argument: \\
+    \(f\) is one-to-one. We also know that \(k \notin k\) (otherwise we would form Russell's paradox). The preimage \(f^{-1}[\{f(k)\}]\) (the preimage of \(f(k)\) under \(f\)) can only contain one element since \(f\) is one-to-one, and \(k \in f^{-1}[\{f(k)\}]\) because the preimage of \(f(k)\) must contain \(k\). Thus, \(\text{ran} f = \text{ran}(f \upharpoonright k) \cup \text{ran}(f \upharpoonright \{k\}) = k \cup \{k\}\).
+    }

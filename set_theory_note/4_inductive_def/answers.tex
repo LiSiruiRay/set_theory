@@ -1,0 +1,90 @@
+\subsection{Excercise Answers}
+\begin{question} \textbf{Exercise 4.2} \\
+    \textbf{Proposition 4.1} With respect to rule instances \( R \)
+    \begin{enumerate}
+        \item[(i)] \( I_R \) is \( R \)-closed, and
+        \item[(ii)] if \( Q \) is an \( R \)-closed set, then \( I_R \subseteq Q \).
+    \end{enumerate}
+
+    \textbf{Proof:}
+
+    (i) It is easy to see that \( I_R \) is closed under \( R \). Suppose \( (X / y) \) is an instance of a rule in \( R \) and that \( X \subseteq I_R \). Then, from the definition of \( I_R \), there are derivations of each element of \( X \). If \( X \) is nonempty, these derivations can be combined with the rule instance \( (X / y) \) to provide a derivation of \( y \), and otherwise, \( (\emptyset / y) \) provides a derivation immediately. In either case, we obtain a derivation of \( y \), which must therefore be in \( I_R \) too. Hence, \( I_R \) is closed under \( R \).
+
+    (ii) Suppose that \( Q \) is \( R \)-closed. We want to show that \( I_R \subseteq Q \). Any element of \( I_R \) is the conclusion of some derivation. But any derivation is built out of rule instances \( (X / y) \). If the premises \( X \) are in \( Q \), then so is the conclusion \( y \) (in particular, the conclusion of any axiom will be in \( Q \)). Hence, we can work our way down any derivation, starting at axioms, to show its conclusion is in \( Q \). More formally, we can do an induction on the proper subderivation relation \( \prec \) to show
+    \[
+    \forall y \in I_R. \ d \Vdash_R y \implies y \in Q
+    \]
+    for all \( R \)-derivations \( d \). Therefore, \( I_R \subseteq Q \).
+
+    \textbf{Exercise 4.2} Do the induction on derivations mentioned in the proof above.
+\end{question}
+
+\begin{proof}
+    We prove this question in two parts:
+    \begin{enumerate}
+        \item Prove that the relation \( \prec \) defined above is well-founded.
+        \item Prove by induction on all derivations.
+    \end{enumerate}
+
+    \textbf{1. Claim:} The relation \( \prec \) defined above is well-founded.  \\
+    \indent \textbf{Proof:} We prove this by mapping every derivation to a natural number (height) and then utilizing the induction property of natural numbers to complete the proof.  
+    We define a function \( h \) (height) as \( h(d) \) where:
+    \begin{itemize}
+        \item If \( d \) is of the form \( (\emptyset / x) \), then \( h(d) = 0 \).
+        \item If \( d = (\{d_1, \dots, d_n\} / x) \), let \( D = \{d_1, \dots, d_n\} \), then \( h(d) = \max\{h(d_1), \dots, h(d_n)\} + 1 \). The maximum is well-defined because \( D \) is finite by definition.
+    \end{itemize}
+
+    By this construction, it is easy to show that \( h(d_1) < h(d_2) \) if and only if \( d_1 \prec d_2 \). Since \( < \) on natural numbers is well-founded, we conclude that \( \prec \) is a well-founded relation. By definition of derivations, we exhusted every derivation ($h$'s domain is all derivations, thus $h$ is well-defined).
+    Thus, it is valid to use induction on \( \prec \).
+
+    \textbf{2. Want to Show (WTS):}  
+    For all derivations \( d \), for all \( y \in I_R \), if \( d \Vdash_R y \), then \( y \in Q \).
+
+    We can reformulate this as a property of derivations:  
+    Let \( P(d) \) denote the property \( \forall y \in I_R, d \Vdash_R y \implies y \in Q \).  
+    We need to show that for all derivations \( d^{ 1}_i \) such that \( P(d^{ 1}_i) \) holds and \( d^{ 1}_i \prec d^{ 2} \), we have \( P(d^{ 2}) \), provided that all rule instances of the form of axioms \( (\emptyset / x) \) are in \( I_R \) and \( Q \) (i.e., \( x \in I_R \) and \( x \in Q \)).
+
+    \textbf{Proof:}  
+    Let \( y \in I_R \) be such that \( d^{ 2} \Vdash_R y \). By definition and the construction of the derivation, \( d^{ 2} \) has the form \( (D / y) \), where \( D = \{d^{ 1}_1, \dots, d^{ 1}_n\} \). Also, by definition, there exists \( X \) such that \( (X / y) \in R \) and \( X = \{x_1, \dots, x_n\} \).
+
+    By the definition of derivation, we know that \( d^{ 1}_i \Vdash_R x_i \). By the induction hypothesis, we conclude that \( x_i \in Q \), meaning \( X \subseteq Q \). Therefore, \( y \in Q \).
+
+    Thus, we have \( P(d) \) for all derivations \( d \), thereby proving the statement.
+
+\end{proof}
+
+\begin{question}
+    \textbf{Exercise 4.3} For rule instances \( R \), show
+    \[
+    \bigcap \{ Q \mid Q \text{ is } R\text{-closed} \}
+    \]
+    is \( R \)-closed. What is this set?
+\end{question}
+\begin{proof}
+    \[
+    \bigcap \{ Q \mid Q \text{ is } R\text{-closed} \} = I_R.
+    \]
+    By showing this, it suffices to answer both parts of the question.
+
+    Let \( K = \{ Q \mid Q \text{ is } R\text{-closed} \} \).
+
+    \begin{enumerate}
+        \item \(\bigcap K \subseteq I_R\): \\
+        Since \( I_R \in K \), we have \( \bigcap K \subseteq I_R \).
+
+        \item \( I_R \subseteq \bigcap K \): \\
+        For all \( Q \in K \), we know that \( I_R \subseteq Q \) because \( I_R \) is the smallest set closed under \( R \) (proven before). Thus, \( I_R \subseteq \bigcap K \).
+    \end{enumerate}
+
+    Since both directions are proven, we conclude that:
+    \[
+    \bigcap \{ Q \mid Q \text{ is } R\text{-closed} \} = I_R.
+    \]
+\end{proof}
+
+\begin{question}
+    \textbf{Exercise 4.4} Let the rules consist of \( (\emptyset / 0) \) and \( (\{n\} / (n + 1)) \) where \( n \) is a natural number. What is the set defined by the rules and what is rule induction in this case?
+\end{question}
+\begin{proof}
+    Natural Number. Mathematical induction.
+\end{proof}
