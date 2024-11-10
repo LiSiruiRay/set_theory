@@ -2,6 +2,15 @@
 \usepackage[a4paper, left=1in, right=1in, top=1.5in, bottom=1.5in]{geometry}
 \usepackage[colorlinks=true, linkcolor=blue]{hyperref}
 \usepackage{raynotes}  % Load the custom package
+\usepackage{xcolor}
+\usepackage{framed}
+
+% Customize leftbar
+\definecolor{leftbarcolor}{gray}{0.75}  % Define color (optional)
+\renewenvironment{leftbar}{%
+    \def\FrameCommand{\vrule width 1pt \hspace{10pt}}%  Adjust width (1pt) and spacing (10pt)
+    \MakeFramed{\advance\hsize-\width\FrameRestore}}%
+ {\endMakeFramed}
 
 \title{Notes on Set Theory}
 \author{Ray Li}

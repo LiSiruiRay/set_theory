@@ -1,9 +1,9 @@
 \subsection{Material Notes}
-
+\subsubsection{FINITE SETS}
 In the Book Page 134 to 135, while proving the case 1, the book mentioned
 
 % \textbf{Definitions:}
-\begin{quote}
+\begin{leftbar}
     \textbf{Pigeonhole Principle:} No natural number is equinumerous to a proper subset of itself.
 
     \textbf{Proof} Assume that \(f\) is a one-to-one function from the set \(n\) into the set \(n\). We will show that \(\text{ran} f\) is all of the set \(n\) (and not a proper subset of \(n\)). This suffices to prove the theorem.
@@ -14,9 +14,109 @@ In the Book Page 134 to 135, while proving the case 1, the book mentioned
     Then \(0 \in T\); the only function from the set \(0\) into the set \(0\) is \(\emptyset\) and its range is the set \(0\). Suppose that \(k \in T\) and that \(f\) is a one-to-one function from the set \(k^+\) into the set \(k^+\). We must show that the range of \(f\) is all of the set \(k^+\); this will imply that \(k^+ \in T\). Note that the restriction \(f \upharpoonright k\) of \(f\) to the set \(k\) maps the set \(k\) one-to-one into the set \(k^+\).
 
     \textbf{Case 1} Possibly the set \(k\) is closed under \(f\). Then \(f \upharpoonright k\) maps the set \(k\) into the set \(k\). Then because \(k \in T\) we may conclude that \(\text{ran} (f \upharpoonright k)\) is all of the set \(k\). Since \(f\) is one-to-one, the only possible value for \(f(k)\) is the number \(k\). Hence \(\text{ran} f\) is \(k \cup \{k\}\), which is the set \(k^+\).  
-\end{quote}
+\end{leftbar}
 \raynote{
     Here the \textbf{Case 1} should have more explanation: \\
     We know that \(k\) is closed under \(f\) and \(\text{ran} (f \upharpoonright k) = k\). Then why do we have \(\text{ran} f = k \cup \{k\}\)? This is because of the following argument: \\
     \(f\) is one-to-one. We also know that \(k \notin k\) (otherwise we would form Russell's paradox). The preimage \(f^{-1}[\{f(k)\}]\) (the preimage of \(f(k)\) under \(f\)) can only contain one element since \(f\) is one-to-one, and \(k \in f^{-1}[\{f(k)\}]\) because the preimage of \(f(k)\) must contain \(k\). Thus, \(\text{ran} f = \text{ran}(f \upharpoonright k) \cup \text{ran}(f \upharpoonright \{k\}) = k \cup \{k\}\).
     }
+\subsubsection{CARDINAL ARITHMETIC}
+
+In Page 139 to 140, while proving Theorem 6H, the book mentioned that
+\begin{leftbar}
+    \textbf{Theorem 6H} Assume that $K_1 \approx K_2$ and $L_1 \approx L_2$.
+
+    \begin{enumerate}
+        \item[(a)] If $K_1 \cap L_1 = K_2 \cap L_2 = \emptyset$, then $K_1 \cup L_1 \approx K_2 \cup L_2$.
+        \item[(b)] $K_1 \times L_1 \approx K_2 \times L_2$.
+        \item[(c)] ${}^{(L_1)}K_1 \approx {}^{(L_2)}K_2$.
+    \end{enumerate}
+
+\end{leftbar}
+\raynote{Theorem 6H: More perspectives}
+
+We may also prove that \(H\) is a bijection by using the theorem that a function is a bijection if and only if it has an inverse (i.e., its left and right inverses coincide). Thus, the remaining task is to find the inverse. This is straightforward to do. Since \(H(j) = f \circ j \circ g^{-1}\), we can express \(j\) as \(j = f^{-1} \circ H(j) \circ g\), which implies that \(H^{-1}(i) = f^{-1} \circ i \circ g\). It is easy to verify that such an \(H^{-1}\) is indeed the inverse by composing \(H\) with \(H^{-1}\) both on the left and the right.
+
+Another approach to prove that \(H\) is a bijection between two function spaces is by demonstrating that \(H\) is both injective and surjective:
+\begin{itemize}
+    \item \textbf{\(H\) is surjective:} For every \(i \in {}^{(L_2)}K_2\), there exists a \(j \in {}^{(L_1)}K_1\) such that \(j = f^{-1} \circ i \circ g\). It is straightforward to verify that \(H(j) = i\).
+    \item \textbf{\(H\) is injective:} We need to show that if \(H(j) = i\), then \(j\) must have the form \(j = f^{-1} \circ i \circ g\). In other words, \(H(j) = i\) if and only if \(j = f^{-1} \circ i \circ g\). This is not difficult to verify: \(H(f^{-1} \circ i \circ g) = i\). Additionally, since \(H(j) = f \circ j \circ g^{-1} = i\), it follows that \(j = f^{-1} \circ i \circ g\). After establishing this, if \(H\) maps \(j_1\) and \(j_2\) to the same element \(i\), then we must have \(j_1 = f^{-1} \circ i \circ g\) and \(j_2 = f^{-1} \circ i \circ g\). Furthermore, since function composition is a function, we conclude that \(j_1 = j_2\).
+\end{itemize}
+
+In both of the above methods, we do not need to explicitly unfold what \(i\) and \(j\) are; we treat them as objects themselves rather than focusing on their relations. This, in a certain sense, makes the argument more abstract and simpler. However, in both approaches, we need to use the fact that function composition is itself a function, meaning that \(K_g: f \mapsto f \circ g\) is a function of \(f\), and similarly, \(K'_g: f \mapsto g \circ f\) is also a function of \(f\).
+
+In Page 141 , the book mentioned that
+
+\begin{leftbar}
+    \textbf{5.} Recall that \(\emptyset^K = \{\emptyset\}\) for any set \(K\) and that \(K^{\emptyset} = \emptyset\) for nonempty \(K\). In terms of cardinal numbers, these facts become
+    \[
+    \kappa^0 = 1 \quad \text{for any } \kappa,
+    \]
+    \[
+    0^{\kappa} = 0 \quad \text{for any nonzero } \kappa.
+    \]
+
+    In particular, \(0^0 = 1\).
+\end{leftbar}
+\raynote{More on cardinal arithmetic} \\
+
+\textbf{1. Understanding \({}^\emptyset K = \{\emptyset\}\)} \\ 
+
+\textbf{Notation:} \({}^A B\) represents the set of all functions from set \(A\) to set \(B\).
+
+\textbf{Case:} When \(A = \emptyset\) (the empty set) and \(B = K\) (any set).
+
+\textbf{Explanation:}
+
+\textbf{Definition of a Function:} A function \(f: A \to B\) is a set of ordered pairs \((a, f(a))\) where each \(a \in A\) is paired with exactly one \(f(a) \in B\). \\
+
+\textbf{When \(A = \emptyset\):} \\ 
+There are \textbf{no elements} in \(A\) to pair with elements in \(B\). \\ 
+Therefore, the \textbf{only possible function} is the \textbf{empty function}, which is the empty set \(\emptyset\). \\
+\textbf{Conclusion:} Since there is exactly \textbf{one} function from \(\emptyset\) to \(K\), we have:
+  \[
+  {}^\emptyset K = \{\emptyset\}
+  \]
+\textbf{Cardinal Arithmetic Interpretation:}
+    \begin{itemize}
+        \item The number of such functions is \textbf{1}.
+        \item Hence, for any cardinal \(\kappa\):
+        \[
+        \kappa^0 = 1
+        \]
+    \end{itemize}
+
+\textbf{2. Understanding \({}^K \emptyset = \emptyset\) for Nonempty \(K\)}
+
+\textbf{Notation:} \({}^K \emptyset\) represents the set of all functions from \(K\) to the empty set \(\emptyset\).
+
+\textbf{Case:} When \(K\) is \textbf{nonempty} and the codomain is \(\emptyset\).
+
+\textbf{Explanation:}
+
+\textbf{Definition of a Function:} A function \(f: K \to \emptyset\) must assign to \textbf{every} element \(k \in K\) an element \(f(k) \in \emptyset\). \\
+\textbf{Problem:} The empty set \(\emptyset\) has \textbf{no elements}. Therefore, there is \textbf{no possible way} to assign a value \(f(k)\) for any \(k \in K\). \\
+\textbf{Conclusion:} Since it is \textbf{impossible} to define such a function when \(K\) is nonempty, there are \textbf{no functions} from \(K\) to \(\emptyset\):
+  \[
+  {}^K \emptyset = \emptyset
+  \] \\ 
+\textbf{Cardinal Arithmetic Interpretation:}
+    - The number of such functions is \textbf{0}.
+    - Hence, for any nonzero cardinal \(\kappa\):
+      \[
+      0^\kappa = 0
+      \]
+\subsubsection{ORDERING CARDINAL NUMBERS}
+Page 146, in part
+\begin{leftbar}
+    \textbf{Examples 1.} 
+    \begin{enumerate}
+        \item If \(A \subseteq B\), then \(\text{card } A \leq \text{card } B\). Conversely, whenever \(\kappa \leq \lambda\), there exist sets \(K \subseteq L\) with \(\text{card } K = \kappa\) and \(\text{card } L = \lambda\). To prove this, start with any sets \(C\) and \(L\) of cardinality \(\kappa\) and \(\lambda\), respectively. Then \(C \subseteq L\), so there is a one-to-one function \(f\) from \(C\) into \(L\). Let \(K = \text{ran } f\); then \(C \approx K \subseteq L\).
+        \item For any cardinal \(\kappa\), we have \(0 \leq \kappa\).
+        \item For any finite cardinal \(n\), we have \(n < \aleph_0\). (Why?) For any two finite cardinals \(m\) and \(n\), we have:
+        \[
+        m \in n \implies m \subseteq n \implies m \leq n.
+        \]
+    \end{enumerate}
+\end{leftbar}
+About the `(Why?)` part. This is because any natural number \(n\) is a proper subset of \(\omega\). Thus the embedding map is the injection. Furthermore there is no surjection between \(n\) to \(\omega\) since \(n^+ = n \cap \{n\} \notin n\). Thus \(n \subsetneq \omega \& n \neq \omega\).

@@ -1,113 +1,163 @@
 \subsection{Excercise Answers}
-% \subsection{3.1 Mathematical induction Excercise Answers}
+\begin{question}
+    \textbf{E 6} Let $\kappa$ be a nonzero cardinal number. Show that there does not exist a set to which every set of cardinality $\kappa$ belongs.
+\end{question}
+\begin{proof}
+    Proof by contradiction (BWOC): Assume that such a set exists. Let 
+    \[ 
+    A = \{ K \mid |K| = \kappa \} 
+    \]
+    be the set containing all sets with cardinality $\kappa$.
 
-% \begin{question} (E3.2) \\ 
-%     A string is a sequence of symbols. A string $a_1 a_2 \cdots a_n$ with $n$ positions occupied by symbols is said to have \textit{length} $n$. A string can be empty in which case it is said to have length 0. Two strings $s$ and $t$ can be concatenated to form the string $st$. Use mathematical induction to show there is no string $u$ which satisfies $au = ub$ for two distinct symbols $a$ and $b$.
-% \end{question}
+    Consider 
+    \[
+    \bigcup A,
+    \]
+    the union of all sets in $A$. By construction, $\bigcup A$ would be a set that contains every possible set of cardinality $\kappa$.
 
-% \begin{proof}
-%     by induction on the length of \( u \)
+    However, this leads to a contradiction since such a set does not exist in the framework of standard set theory (e.g., due to limitations implied by Russell's paradox or cardinality constraints).
 
-% Let \( A = \{n \mid \text{len}(u) = n \text{ and } au \neq ub \} \).
+    Therefore, there does not exist a set $A$ such that it contains every set of cardinality $\kappa$.
+\end{proof}
 
-% \begin{enumerate}
-%     \item Base Case:
-%     \begin{itemize}
-%         \item \( 0 \in A \): By the hypothesis, since \( a \neq b \), it is clear that when \( u \) is the empty string (i.e., length 0), \( au \neq ub \). Thus, \( 0 \in A \).
-%         \item \( 1 \in A \): If \( u \) has length 1, it is easy to see that \( au \neq ub \) because \( a \neq b \).
-%     \end{itemize}
+\begin{question}
+    \textbf{E 7}
+    Assume that $A$ is finite and $f: A \rightarrow A$. Show that $f$ is one-to-one if and only if $\text{ran } f = A$.
+\end{question}
+Given that $\text{ran } f = A$, this implies that $f$ is surjective.
+Thus, the statement is equivalent to proving that: \textit{``Assume that $A$ is finite and $f: A \rightarrow A$. Show that $f$ is one-to-one if and only if $f$ is surjective.''}
+\begin{proof}
+Assume $A$ \text{ is finite.}
+    \begin{itemize}
+        \item (\(\Rightarrow\)) \textbf{(By way of contradiction):} Assume that $f$ is injective but not surjective. Then, the image of $f$ under $A$, denoted by $f[A]$, is a proper subset of $A$, meaning $f[A] \subsetneq A$. Thus, we have an injective function $f: A \rightarrow f[A]$. By construction, $f[A] = f[A]$, and therefore, $f$ is surjective onto $f[A]$. Hence, $f$ is a bijection from $A$ to $f[A]$, where $f[A] \subsetneq A$. According to Corollary 6D, this implies that $A$ is equinumerous to a proper subset of itself, which contradicts the assumption that $A$ is finite.
 
-%     \item Inductive Step:
-%     Assume \( n \in A \). We want to show that \( n + 1 \in A \) for \( n \geq 1 \).
+        \item (\(\Leftarrow\)) \textbf{(By way of contradiction):} Assume that $f$ is surjective but not injective. By the axiom of choice, there exists an injection, call it $g$, from $A$ to the preimage of $A$ under $f$, which is a proper subset of $A$. Such a function $g$ would then be a bijection from the preimage of $A$ to $A$. This again implies that $A$ is equinumerous to a proper subset of itself, leading to the conclusion that $A$ is infinite. This contradicts our original assumption that $A$ is finite.
+    \end{itemize}
+\end{proof}
+\begin{question}
+    \textbf{E 8}
+    Prove that the union of two finite sets is finite (Corollary 6K), without any use of arithmetic.
+\end{question}
+\begin{proof}
+    Let \(|A| \approx n\) and \(|B| \approx m\), where \(n, m \in \omega\). Assume that \(A\) and \(B\) are disjoint. By the definition of equinumerosity, there exist functions \(h: A \rightarrow n\) and \(g: B \rightarrow m\). We define a function \(f: A \cup B \rightarrow n + m\) (as defined earlier) such that
 
-%     Proof by contradiction:
-%     Suppose \( \text{len}(u) = n + 1 \) and \( au = ub \). Since \( n + 1 \geq 2 \), we can write \( u = qu' \), where \( \text{len}(q) = 1 \). Thus, \( au = aqu' \) and \( ub = qu'b \), leading to the equation \( aqu' = qu'b \).
-    
-%     From this, we deduce that \( a = q \). By eliminating the leftmost characters, we are left with \( qu' = u'b \). Since \( q = a \), the equation becomes \( au' = u'b \), where \( \text{len}(u') = n \). By the induction hypothesis, \( au'p \neq u'pb \), leading to a contradiction.
+    \[
+    f(x) = 
+    \begin{cases} 
+    h(x) & \text{if } x \in A \\
+    n + g(x) & \text{if } x \in B
+    \end{cases}
+    \]
 
-%     Therefore, \( n + 1 \in A \).
-% \end{enumerate}
+    This function is well-defined since \(A\) and \(B\) are disjoint. It is straightforward to verify that such an \(f\) is a bijection with an inverse \(f^{-1}: n + m \rightarrow A \cup B\) defined as follows:
 
-% By mathematical induction, we conclude that there is no string \( u \) such that \( au = ub \) for two distinct symbols \( a \) and \( b \).
+    \[
+    f^{-1}(k) = 
+    \begin{cases} 
+    h^{-1}(k) & \text{if } k \leq n \\
+    g^{-1}(k - n) & \text{if } k > n
+    \end{cases}
+    \]
 
-% \end{proof}
+    If \(A\) and \(B\) are not disjoint, then let \(A \cap B = C \neq \emptyset\). Replace each element in \(C\) by elements not present in \(A \cup B\) to form a new set \(C'\). Let \(A' = (A - C) \cup C'\). We have \(|A'| = |A|\) and \(A \cup B \subseteq A' \cup B\), which forms a disjoint union. By Lemma 6F, there exists a \(k < n + m\) such that \(|A \cup B| = k\).
 
-% \begin{question} (E3.6) \\
-%     What goes wrong when you try to prove the execution of commands is deterministic by using structural induction on commands?
-% \end{question}
-% % \begin{proposition}
-% %     \textbf{Proposition 2.8} Let \( w \equiv \text{while } b \, \text{do} \, c \) with \( b \in \text{Bexp}, c \in \text{Com} \). Then
-% %     \[
-% %     w \sim \text{if } b \, \text{then } c;w \, \text{else skip}.
-% %     \]
-% % \end{proposition}
+    Therefore, in both cases, \(A \cup B\) is finite.
+\end{proof}
+\begin{question}
+    \textbf{E 9}
+    Prove that the Cartesian product of two finite sets is finite (Corollary 6K), without any use of arithmetic.
+\end{question}
+\begin{proof}
+    We will use induction to prove this statement:
 
-% \begin{proof}
-%     The issue arises in verifying the \textbf{while} rule. By the \textbf{Rules for While-loops}, we aim to show that:
-% \[
-% \langle \textbf{while } b \, \textbf{do} \, c, \sigma \rangle \to \sigma_1 \quad \text{and} \quad \langle \textbf{while } b \, \textbf{do} \, c, \sigma \rangle \to \sigma_2 \implies \sigma_1 = \sigma_2
-% \]
-% When \( \langle b, \sigma \rangle \to \text{false} \), there is no problem. However, the issue emerges when \( \langle b, \sigma \rangle \to \text{true} \).
+    Let 
+    \[
+    S = \{ m \mid \forall n \in \omega, \forall A, B \text{ such that } |A| = m, |B| = n, |A \times B| = m \times n \},
+    \]
+    where \(\times\) is defined as the Cartesian product for natural numbers.
 
-% To argue this, we use \textbf{Proposition 2.8} (\(\textbf{while } b \, \textbf{do} \, c \sim \textbf{if } b \, \textbf{then } c;w \, \textbf{else skip}\)). This allows us to simplify the verification to:
-% \[
-% \langle \textbf{if } b \, \textbf{then} \, c;w \, \textbf{else skip}, \sigma \rangle \to \sigma_1 \quad \textbf{and} \quad \langle \textbf{if } b \, \textbf{then} \, c;w \, \text{else skip}, \sigma \rangle \to \sigma_2 \implies \sigma_1 = \sigma_2
-% \]
-% However, if we attempt to use structural induction, we would need to assume something smaller or a predecessor of \( w \). Yet, in each "previous" case, we still need to argue about \( w \) itself (rather than a predecessor or a smaller set). Therefore, it is not possible to prove this by structural induction.
+    \begin{enumerate}
+        \item \textbf{Base Case:} \(0 \in S\). For any set \(B\), \(\emptyset \times B = \emptyset\). Thus, \(|\emptyset \times B| = 0 \times |B| = 0\) since \(B\) is finite and therefore \(|B| \in \omega\). Furthermore, \(1 \in S\) since for any singleton \(\{a\}\) and any set \(B\), there exists a bijection between \(\{a\} \times B\) and \(B\) given by the function \(f: \{a\} \times B \rightarrow B\) defined as \(f(a, x) = x\). The inverse function is \(g(x) = (a, x)\). Therefore, \(|\{a\} \times B| = 1 \times |B| = |B|\).
+        
+        \item \textbf{Inductive Step:} Assume \(k \in S\). We want to show that \(k^+ \in S\), where \(k^+\) denotes the successor of \(k\).
+        
+        To show \(k^+ \in S\), we need to prove that for all \(m \in \omega\) and for all sets \(A\) and \(B\) such that \(|A| = k^+\) and \(|B| = m\), we have \(|A \times B| = k^+ \times m\).
+        
+        Since we have already proven that \(0 \in S\), the induction starts with \(k \geq 1\), meaning \(k^+ \geq 2\).
+        
+        Let \(A\) be a set with \(|A| = k^+\). Since \(k^+ \geq 2\), there exists an element \(a \in A\). Let \(A' = A \setminus \{a\}\). Therefore, \(|A'| = k\), and by the induction hypothesis, \(|A' \times B| = k \times m\). Since \(\{a\}\) is a singleton, we have \(|\{a\} \times B| = 1 \times m = m\) by the induction hypothesis.
+        
+        Therefore,
+        \[
+        |A \times B| = |(A' \times B) \cup (\{a\} \times B)| = k \times m + m = k^+ \times m
+        \]
+        by the definition of multiplication for natural numbers.
+    \end{enumerate}
 
-% \end{proof}
-% \raynote{
-%     Here there exists two kind of structural induction. Or more specifically one is structural induction and the other one is direvation induction. They are some subtle differences between the two. Not to confuse with the proof for Theorem 3.11 in the book. The structural induction here refers to a way of "syntax deviding", like how you proof arithmetic ones from the definition of \[
-%         a ::= n \mid X \mid a_0 + a_1 \mid a_0 - a_1 \mid a_0 \times a_1.
-%         \]
-%     by each case (here the case refers to $n$, $a_0$, etc.). Yet the direvation induction is refers the different rules (here the case is one kind of rule.). \\
-%     This is formally mentioned in Page 33.
-% }
+    Hence, by induction, the Cartesian product of two finite sets is finite (since natural number is closed under multiplication).
+\end{proof}
+\begin{question}
+    \textbf{E 10 to 12}
+    For Excercises 10 to 12, proving all the Theorem 6I is suffices.
+\end{question}
+In Page 142
+\begin{leftbar}
+    \textbf{Theorem 6I} For any cardinal numbers \(\kappa\), \(\lambda\), and \(\mu\):
 
-% \begin{question} (E 3.8)
-%     Let \( \prec \) be a well-founded relation on a set \( B \). Prove
-%     \begin{enumerate}
-%         \item its transitive closure \( \prec^+ \) is also well-founded,
-%         \item its reflexive, transitive closure \( \prec^* \) is a partial order.
-%     \end{enumerate}
-% \end{question}
+    \begin{enumerate}
+        \item \(\kappa + \lambda = \lambda + \kappa\) and \(\kappa \cdot \lambda = \lambda \cdot \kappa\).
+        \item \(\kappa + (\lambda + \mu) = (\kappa + \lambda) + \mu\) and \(\kappa \cdot (\lambda \cdot \mu) = (\kappa \cdot \lambda) \cdot \mu\).
+        \item \(\kappa \cdot (\lambda + \mu) = \kappa \cdot \lambda + \kappa \cdot \mu\).
+        \item \(\kappa^{\lambda + \mu} = \kappa^\lambda \cdot \kappa^\mu\).
+        \item \((\kappa \cdot \lambda)^\mu = \kappa^\mu \cdot \lambda^\mu\).
+        \item \((\kappa^\lambda)^\mu = \kappa^{\lambda \cdot \mu}\).
+    \end{enumerate}
 
-% \begin{proof}
-%     \text{1. The transitive closure \( \prec^+ \) is well-founded:}
+    \textbf{Proof} Take sets \(K\), \(L\), and \(M\) with \(\text{card } K = \kappa\), \(\text{card } L = \lambda\), and \(\text{card } M = \mu\); for convenience, choose them in such a way that any two are disjoint. Then each of the equations reduces to a corresponding statement about equinumerous sets. For example, \(\kappa \cdot \lambda = \text{card } (K \times L)\) and \(\lambda \cdot \kappa = \text{card } (L \times K)\); consequently, showing that \(\kappa \cdot \lambda = \lambda \cdot \kappa\) reduces to showing that \(K \times L \approx L \times K\). Listed in full, the statements to be verified are:
 
-% proof by way of contradiction (BWOC). Assume there exists an infinite chain:
-% \[
-% \cdots \prec^+ a_{n+1} \prec^+ a_n \prec^+ \cdots
-% \]
-% Now, pick an element \( a_k \), and \( \exists b \prec^+ a_k \) such that \( b \prec a_k \), call such $b$ \(a_{k+1}\) . If no such \( b \) exists, we would have \( \forall b, a_k \prec b \), which contradicts the assumption of an infinite descending chain. By continuing this process, we can pick an infinite chain of \( \prec \), which contradicts the well-foundedness of \( \prec \). Hence, \( \prec^+ \) is well-founded.
+    \begin{enumerate}
+        \item \(K \cup L \approx L \cup K\) and \(K \times L \approx L \times K\).
+        \item \(K \cup (L \cup M) \approx (K \cup L) \cup M\) and \(K \times (L \times M) \approx (K \times L) \times M\).
+        \item \(K \times (L \cup M) \approx (K \times L) \cup (K \times M)\).
+        \item \({}^{(L \cup M)} K \approx {}^K L \times {}^k M\).
+        \item \({}^M (K \times L) \approx {}^M K \times {}^M L\).
+        \item \({}^{M} ({}^L K) \approx {}^{(L \times M)} K\).
+    \end{enumerate}
+\end{leftbar}
+I will use the second part of 1 to 6 (on the set) to prove the theorem.
+\begin{proof} For the simple ones I will simple list the fucntion without justifying that it is bijection.
+    \begin{enumerate}
+        \item \(K \cup L = L \cup K\) by algebra of set (Page 27). f: \(K \times L \rightarrow L \times K\) s.t. \(<k, l> \mapsto <l, k>\)
+        \item \(K \cup (L \cup M) = (K \cup L) \cup M\) by algebra of set (Page 27). f: \(K \times (L \times M) \rightarrow (K \times L) \times M\) s.t. \(<k, <l, m>> \mapsto <<k, l>, m>\).
+        \item \(K \times (L \cup M) = (K \times L) \cup (K \times M)\) by Excercise 2 Chapter3.
+        \item \(H: {}^{(L \cup M)} K \rightarrow {}^K L \times {}^k M\) \(s.t. f \mapsto <f \upharpoonright {}_L, f \upharpoonright {}_{M - L}>\).
+        \item \(H: {}^M (K \times L) \rightarrow {}^M K \times {}^M L\). Let \(f \in {}^M (K \times L) \), then \(\forall m \in M f: m \mapsto f(m) = <k, l> = <f_1(m), f_2(m)>\). Thus let \(H: f \mapsto <f_1, f_2>\).
+        \item Proven in book. 
+    \end{enumerate}
+\end{proof}
 
-% 2. The reflexive, transitive closure \( \prec^* \) is a partial order:
+\begin{question}
+    \textbf{E 13}
+    Show that a finite union of finite sets is finite. That is, show that if \(B\) is a finite set whose members are themselves finite sets, then \(\bigcup B\) is finite.
+\end{question}
+\begin{proof}
+    In Chapter 6 E 3, we have proved that two finite set's union is finite. Do induction on natural number, we can prove that any finite union of finite sets is finite.
+\end{proof}
+\begin{question}
+    \textbf{14}
+    Define a \textit{permutation} of \(K\) to be any one-to-one function from \(K\) onto \(K\). We can then define the factorial operation on cardinal numbers by the equation
+    \[
+    \kappa! = \text{card} \{ f \mid f \text{ is a permutation of } K \},
+    \]
+    where \(K\) is any set of cardinality \(\kappa\). Show that \(\kappa!\) is well defined, i.e., the value of \(\kappa!\) is independent of just which set \(K\) is chosen.
 
-% By the definition of a partial order, we need to show that the relation is reflexive, antisymmetric, and transitive. Since \( \prec^* \) is already reflexive and transitive by definition, we only need to prove antisymmetry.
+\end{question}
+\begin{proof}
+    To show that \(\kappa!\) is well-defined, let \(\kappa\) be a cardinal number, and consider any two sets \(A\) and \(B\) such that \(|A| = |B| = \kappa\).
 
-% BWOC. : Assume there exist \( a, b \in B \) such that \( a \prec^* b \) and \( b \prec^* a \), yet \( a \neq b \). If \( a \neq b \), then it must be the case that either \( a \prec^* b \) or \( b \prec^* a \), but not both. This leads to a contradiction, hence \( a = b \). Therefore, \( \prec^* \) is antisymmetric, and thus a partial order.
+    Since \(A \approx A\), let \(f_A\) be a bijection \(f_A: A \rightarrow A\). Similarly, let \(f_B\) be a bijection \(f_B: B \rightarrow B\). Since \(A \approx B\), there exists a bijection \(f: A \rightarrow B\).
 
-% \end{proof}
+    We can establish a bijection between the set of permutations of \(A\) (denoted by \(\mathrm{perm}(A)\) or \(\mathrm{sym}(A)\)) and the set of permutations of \(B\) (denoted by \(\mathrm{perm}(B)\) or \(\mathrm{sym}(B)\)). This bijection can be constructed as follows: for any \(f_A \in \mathrm{perm}(A)\), we define a corresponding permutation of \(B\) by \(f_A' = f \circ f_B \circ f^{-1}\) (this is a conjugation by \(f\)).
 
-% % \subsubsection{3.2 Structural induction Excercise Answers}
-
-% \begin{question} (E 3.9)
-%     For a suitable well-founded relation on strings, use the "no counterexample" approach described above to show there is no string \( u \) which satisfies \( au = ub \) for two distinct symbols \( a \) and \( b \). Compare your proof with another by well-founded induction (and with the proof by mathematical induction asked for in Section 3.1).
-% \end{question}
-% \begin{proof}
-%     Define \( \prec \) as a relation on the set \( U \times U \) (the Cartesian product of the set of strings \( U \)) such that for two strings \( a \) and \( b \), if \( \text{len}(a) < \text{len}(b) \), then \( a \prec b \).
-
-% \textit{Claim:} \( \prec \) is well-founded on the set of strings: we can identify the minimum element, which is the empty string (having length 0).
-
-% Thus, we form the set \( A = \{ u \mid au = ub, \text{ for all } a \neq b \} \). We aim to show that such a set does not exist.
-
-% (BWOC): Assume \( A \) exists. Since \( A \subseteq U \), there exists a smallest element, call it \( u \), such that \( au = ub \). By the argument in \textit{E 3.2}, we know that \( \text{len}(u) \neq 0, 1 \). Therefore, we can write \( u = pu' \), where \( \text{len}(p) = 1 \).
-
-% Thus, \( apu' = pu'b \), implying \( a = p \). This gives us \( apu' = au'b \), and by removing the leftmost characters, we get \( pu' = u'b \), where \( p = a \). Hence, \( au' = u'b \), where \( \text{len}(u') < \text{len}(u) \), contradicting the assumption that \( u \) is the smallest element in \( A \).
-
-% From here, we can argue in two ways:
-% \begin{enumerate}
-%     \item Directly conclude that this leads to a contradiction, thus proving the theorem.
-%     \item Alternatively, we can state that no minimum element exists in \( A \), meaning that \( \prec \) is not well-founded on \( A \). Hence, the theorem is proven.
-% \end{enumerate}
-% \end{proof}
+    This construction is clearly a bijection between \(\mathrm{perm}(A)\) and \(\mathrm{perm}(B)\). Thus, the value of \(\kappa!\) is independent of the particular choice of the set \(K\) with cardinality \(\kappa\), proving that the factorial operation on cardinal numbers is well-defined.
+\end{proof}
