@@ -120,3 +120,21 @@ Page 146, in part
     \end{enumerate}
 \end{leftbar}
 About the `(Why?)` part. This is because any natural number \(n\) is a proper subset of \(\omega\). Thus the embedding map is the injection. Furthermore there is no surjection between \(n\) to \(\omega\) since \(n^+ = n \cap \{n\} \notin n\). Thus \(n \subsetneq \omega \& n \neq \omega\).
+
+\subsubsection{AXIOM OF CHOICE}
+In Page 156, for the Theorem 6N:
+\begin{leftbar}
+    \begin{itemize}
+        \item[(a)] For any infinite set \( A \), we have \( \omega \leq A \).
+        \item[(b)] \( \aleph_0 \leq \kappa \) for any infinite cardinal \( \kappa \).
+    \end{itemize}
+\end{leftbar}
+\raynote{Intuitive idea on Theorem 6N}
+
+\begin{tikzcd}
+    B + \omega \arrow[r]  \arrow[d, "bijection"'] & B + (\omega - C) \arrow [l, "bijection"] \arrow[d] \\
+    A  \arrow[u] \arrow[r, "?"'] & A - C \arrow[u, "bijection"']
+\end{tikzcd}
+
+where \(C \neq \emptyset \).
+Clearly since composition of bijections are bijection, \(A\) and \(A - C\) has a bijection.

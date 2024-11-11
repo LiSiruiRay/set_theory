@@ -161,3 +161,93 @@ I will use the second part of 1 to 6 (on the set) to prove the theorem.
 
     This construction is clearly a bijection between \(\mathrm{perm}(A)\) and \(\mathrm{perm}(B)\). Thus, the value of \(\kappa!\) is independent of the particular choice of the set \(K\) with cardinality \(\kappa\), proving that the factorial operation on cardinal numbers is well-defined.
 \end{proof}
+\begin{question}
+    \textbf{E 15}
+    Show that there is no set \(\mathcal{A}\) with the property that for every set there is some member of \(\mathcal{A}\) that dominates it.
+\end{question}
+\begin{proof}
+    To prove that there is no such set \(\mathcal{A}\) with the stated property, we proceed by contradiction.
+
+    \textbf{By way of contradiction (BWOC):} Assume that such a set \(\mathcal{A}\) exists. Let \(\mathcal{A}' = \bigcup \mathcal{A}\). By the definition of \(\mathcal{A}\), there exists a set \(K \in \mathcal{A}\) such that \(K\) dominates \(\mathcal{A}'\). Therefore, there is an injection from \(\mathcal{A}'\) to \(K\).
+
+    By the definition of \(\mathcal{A}\), the power set \(2^K\) (the set of all subsets of \(K\)) is dominated by some element \(K' \in \mathcal{A}\). This means that there exists an injection from \(2^K\) to \(K'\). Since \(K' \in \mathcal{A}\) and \(\mathcal{A}' = \bigcup \mathcal{A}\), we have \(K' \subseteq \mathcal{A}'\). Therefore, the embedding of \(K'\) into \(\mathcal{A}'\) is a natural injection.
+
+    Furthermore, we know that \(\mathcal{A}'\) injects into \(K\), and \(K\) injects into \(2^K\), since the power set of any set strictly dominates the set itself. Thus, we have an injection from \(2^K\) into \(\mathcal{A}'\). By the transitivity of injections (i.e., the property that injections are preserved under composition), this implies that \(2^K\) injects into \(K\), which contradicts the fact that the power set of a set always strictly dominates the set itself.
+
+    Therefore, our initial assumption that such a set \(\mathcal{A}\) exists must be false.
+\end{proof}
+
+\begin{question}
+    \textbf{E 16}
+    Show that for any set \(S\) we have \(S \subseteq 2^S\), but \(S \not\approx 2^S\).
+\end{question}
+\begin{proof}
+    To prove that for any set \(S\) we have \(S \subseteq 2^S\) but \(S \not\approx 2^S\), we proceed as follows:
+
+    \textbf{1. Injection from \(S\) into \(2^S\):}  
+    Define a function \(H: S \rightarrow {}^S 2\) such that \(H(x) \mapsto f_x\), where \(f_x: S \rightarrow \{0, 1\}\) is defined by:
+    \[
+    f_x(y) = 
+    \begin{cases} 
+    1 & \text{if } y = x \\
+    0 & \text{otherwise}
+    \end{cases}
+    \]
+    This function \(H\) is injective since distinct elements \(x, x' \in S\) will be mapped to distinct functions \(f_x\) and \(f_{x'}\).
+
+    \textbf{2. Proving \(S \not\approx 2^S\):}  
+    To show that \(S\) is not equinumerous to \(2^S\), we use a diagonal argument. Consider the function \(g: S \rightarrow \{0, 1\}\) defined by:
+    \[
+    g(x) = 1 - H(x)(x)
+    \]
+    We claim that the set \(B = \{g: g(x) = 1 - H(x)(x)\}\) is a subset of \({}^S 2\) but is not in the range of \(H\).
+
+    \begin{proof} We prove by two parts: \\
+        \(B \subseteq {}^S 2\): This is straightforward to show. Since \(H(x)(x) \in \{0, 1\}\), we have \(g(x) \in \{0, 1\}\) for all \(x \in S\). Therefore, \(g\) is a valid function from \(S\) to \(\{0, 1\}\), implying \(B \subseteq {}^S 2\). \\
+        \(B\) is not in the range of \(H\): Suppose, for the sake of contradiction (BWOC), that there exists \(x \in S\) such that \(H(x) = g\). Then we have:
+        \[
+        H(x)(x) = 1 - H(x)(x)
+        \]
+        This implies:
+        \[
+        H(x)(x) = \frac{1}{2}
+        \]
+        which is a contradiction, since \(H(x)(x) \in \{0, 1\}\).
+
+        Thus, we have shown that \(S \subseteq 2^S\) but \(S \not\approx 2^S\).
+    \end{proof}
+
+\end{proof}
+\begin{question}
+    \textbf{E 17}
+    Give counterexamples to show that we cannot strengthen Theorem 6L by replacing "\(\leq\)" by "\(<\)" throughout.
+\end{question}
+Theorem 6L in Page 149:
+\begin{leftbar}
+    \textbf{Theorem 6L} Let \(\kappa\), \(\lambda\), and \(\mu\) be cardinal numbers.
+
+    \begin{enumerate}
+        \item[(a)] \(\kappa \leq \lambda \implies \kappa + \mu \leq \lambda + \mu\).
+        \item[(b)] \(\kappa \leq \lambda \implies \kappa \cdot \mu \leq \lambda \cdot \mu\).
+        \item[(c)] \(\kappa \leq \lambda \implies \kappa^\mu \leq \lambda^\mu\).
+        \item[(d)] \(\kappa \leq \lambda \implies \mu^\kappa \leq \mu^\lambda\); if not both \(\kappa\) and \(\mu\) equal zero.
+    \end{enumerate}
+\end{leftbar}
+\begin{proof}
+    \textbf{A Concrete Example:}
+
+    Consider the sets \(A = \{0, 1\}\) and \(B = \{0, 1, 2\}\).  
+    We have \(|A| < |B|\), yet \(A \cup \omega \approx B \cup \omega\), which implies \(|A| + \aleph_0 = |B| + \aleph_0\).  
+    The same holds for the other operations as well.
+
+    \textbf{A More General and Abstract Example:}
+
+    For any \(n, m \in \omega\) with \(n < m\), we have:
+    \[
+    n + \aleph_0 = m + \aleph_0, \quad n \times \aleph_0 = m \times \aleph_0,
+    \]
+    and similarly for the other cases.
+
+\end{proof}
+
+
