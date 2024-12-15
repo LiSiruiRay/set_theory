@@ -1,0 +1,143 @@
+\subsection{Excercise Answers}
+\begin{question}
+    \textbf{E 4}
+    Let \(<\) be the usual ordering on the set \(P\) of positive integers. For \(n \in P\), let \(f(n)\) be the number of distinct prime factors of \(n\). Define the binary relation \(R\) on \(P\) by
+    \[
+    mRn \iff \text{either } f(m) < f(n) \text{ or } \left[ f(m) = f(n) \land m < n \right].
+    \]
+
+    Show that \(R\) is a well-ordering on \(P\). Does \(\langle P, R \rangle\) resemble any of the pictures in Fig. 45 (p. 185)?
+\end{question}
+\begin{proof}
+    
+    To demonstrate that the relation \(R\) is linear:
+
+    1. \textbf{Transitivity}: Assume \(x \, R \, y\) and \(y \, R \, z\). Clearly, by the definition of \(R\), \(x \, R \, z\) holds, satisfying the transitivity condition.
+
+    2. \textbf{Totality}: For all \(x, y \in P\), if \(x \neq y\), then exactly one of the following must hold:
+        \begin{itemize}
+            \item If \(f(x) \neq f(y)\), then either \(x \, R \, y\) or \(y \, R \, x\), depending on whether \(f(x) < f(y)\) or \(f(x) > f(y)\).
+            \item If \(f(x) = f(y)\), then \(x \neq y\) implies either \(x < y\) or \(y < x\) (by the natural ordering on \(P\)).
+        \end{itemize}
+
+    Thus, \(R\) is a linear relation.
+
+    For well-ordering:
+
+    Let \(A \subseteq P\). Define subsets \(S_k = \{x \in A \mid f(x) = k\}\), which clearly form a partition of \(A\) based on the values of \(f(x)\).
+
+    \begin{itemize}
+        \item Observe that there is a natural ordering on these subsets \(S_k\) induced by the ordering of their indices \(k\): \(S_k < S_m\) if \(k < m\). This ordering is linear since \(k \in \mathbb{N}\).
+        \item The collection \(\{S_k\}\) can be embedded into \(\mathbb{N}\) via a natural projection \(S_k \mapsto k\). Since \(\mathbb{N}\) is well-ordered, there exists a least \(k\) such that \(S_k \neq \emptyset\). Let this least subset be \(S_k\).
+        \item Within \(S_k\), \(S_k \subseteq \mathbb{N}\) implies that \(S_k\) inherits the natural ordering of \(\mathbb{N}\). Hence, \(S_k\) contains a least element.
+    \end{itemize}
+
+    This least element of \(S_k\) is the least element of \(A\) under \(R\), proving that \(R\) is a well-ordering on \(P\).
+\end{proof}
+\begin{question} \textbf{E 10}
+    For any set \(S\), we can define the relation \(\in_S\) by the equation:
+    \[
+    \in_S = \{ \langle x, y \rangle \in S \times S \mid x \in y \}
+    \]
+
+    \begin{enumerate}
+        \item[(a)] Show that for any natural number \(n\), the \(\in\)-image of \(\langle n, \in_n \rangle\) is \(n\).
+        \item[(b)] Find the \(\in\)-image of \(\langle \omega, \in_\omega \rangle\).
+    \end{enumerate}
+\end{question}
+\begin{proof}
+    \textbf{Proof for (a):}
+    Let \(A = \{ x \in \omega \mid \text{the } \epsilon\text{-image of } \epsilon_x = x \}\). We want to show that \(A = \omega\).
+
+    \paragraph{Proof by induction:}
+    \begin{itemize}
+        \item \textbf{Base case:} Consider \(0 = \emptyset\). Clearly, \(\epsilon\text{-image of } \epsilon_0 = F(0) = F(\emptyset) = \emptyset = 0\). Thus, \(0 \in \epsilon\text{-image}\), and \(0 \in A\).
+
+        \item \textbf{Inductive step:} Assume \(n \in A\), i.e., the \(\epsilon\text{-image of } \epsilon_n = n\). We want to show that \(n^+ \in A\), i.e., the \(\epsilon\text{-image of } \epsilon_{n^+} = n^+\).
+
+        From the definition of \(F\), we know that \(F(t) = F[\![\text{seg } t]\!]\). Applying this to \(n\), we have \(F(n) = F[\![\text{seg } n]\!] = \epsilon\text{-image of } n\). 
+
+        Therefore,
+        \[
+        \epsilon\text{-image of } n^+ = \epsilon\text{-image of } n \cup \{F(n)\}= (\epsilon\text{-image of } n) \cup \{\epsilon\text{-image of } n\} = n \cup \{n\} = n^+
+        \]
+        Thus, \(n^+ \in A\).
+    \end{itemize}
+
+    By induction, \(A = \omega\).
+
+    \textbf{Proof for (b):}
+    We claim that the \(\epsilon\text{-image}\) is \(\omega\).
+
+    \paragraph{Proof by induction:}
+    \begin{itemize}
+        \item \textbf{Base case:} Clearly, \(0 = \emptyset \in \epsilon\text{-image}\), since \(F(0) = F(\emptyset) = \emptyset = 0\).
+
+        \item \textbf{Inductive step:} Assume \(n \in \epsilon\text{-image}\), i.e., there exists \(t \in \omega\) such that \(F(t) = F[\![\text{seg } t]\!] = n\). We want to show that \(n^+ \in \epsilon\text{-image}\).
+
+        Since \(n \in \epsilon\text{-image}\), there exists \(t \in \omega\) such that \(F(t) = n\). For \(t^+\), we compute:
+        \[
+        F(t^+) = F[\![\text{seg } t^+]\!] = F[\![\text{seg } t]\!] \cup F[\![t]\!].
+        \]
+        Substituting \(F[\![\text{seg } t]\!] = F(t) = n\), we get:
+        \[
+        F(n^+) = n \cup F[\![t]\!].
+        \]
+        Since \(F[\![t]\!] = \{f(t)\} = \{n\}\), we have:
+        \[
+        F(n^+) = n \cup \{n\} = n^+.
+        \]
+        Thus, \(n^+ \in \epsilon\text{-image}\).
+    \end{itemize}
+
+    By induction, the \(\epsilon\text{-image} = \omega\).
+
+\end{proof}
+
+\begin{question}
+    \textbf{E 13.} Assume that two well-ordered structures are isomorphic. Show that there can be only one isomorphism from the first onto the second.
+\end{question}
+\begin{proof}
+    Let \((A, <_A)\) and \((B, <_B)\) be two isomorphic well-ordered structures, and let \(f\) and \(g\) be two isomorphisms from \(A\) to \(B\). Define the set 
+    \[
+    M = \{x \in A \mid f(x) \neq g(x)\}.
+    \]
+    We aim to show that \(M = \emptyset\), i.e., \(f = g\).
+
+    Since \(M \subseteq A\) and \(A\) is well-ordered, the set \(M\), if non-empty, must have a least element. Let \(a \in M\) be this least element. By definition of \(M\), we have \(f(a) \neq g(a)\). By the linearity of the order on \(B\), either \(f(a) <_B g(a)\) or \(g(a) <_B f(a)\). Without loss of generality, assume \(f(a) <_B g(a)\).
+
+    Since \(f\) and \(g\) are bijections, there exists some \(a' \in A\) such that \(g(a') = f(a)\). Note that \(a' \in M\) because \(f(a') \neq g(a')\). Furthermore, since \(a\) is the least element of \(M\), we must have \(a' <_A a\).
+
+    Thus, we have the following relations:
+    1. \(f(a) <_B g(a)\),
+    2. \(g(a') = f(a)\),
+    3. \(a' <_A a\).
+
+    Now, apply \(f\) and \(g\) to the relation \(a' <_A a\). Since both \(f\) and \(g\) preserve the order (as they are isomorphisms), we have:
+    \[
+    f(a') <_B f(a) \quad \text{and} \quad g(a') <_B g(a).
+    \]
+
+    From these, we can form the following chain:
+    \[
+    g(a) <_B g(a') = f(a) <_B f(a').
+    \]
+    This implies \(g(a) <_B f(a)\), contradicting our earlier assumption that \(f(a) <_B g(a)\).
+
+    Therefore, \(M = \emptyset\), and we conclude that \(f = g\). Hence, the isomorphism between the two well-ordered structures is unique.
+
+\end{proof}
+
+\begin{question}
+    \textbf{E 20.} 
+    Show that if \(R\) and \(R^{-1}\) are both well-orderings on the same set \(S\), then \(S\) is finite.
+\end{question}
+\begin{proof}
+    By way of contradiction, assume \(S\) is not finite. Let \(S_0 = S\). Since \(S\) is well-ordered with respect to \(R\), let \(x_0\) be the least element of \(S_0\). Define \(S_1 = S_0 \setminus \{x_0\}\), and let \(x_1\) be the least element of \(S_1\) with respect to \(R\). Repeating this process, we form a sequence \(\{x_i\}_{i=0}^\infty\). This is possible because \(S\) is infinite, and removing any finite subset from \(S\) still leaves an infinite set.
+
+    Define \(K = \{x_i\}_{i=0}^\infty\). Clearly, \(K \subseteq S\). Furthermore, for every \(x_i \in K\), there exists \(x_j \in K\) such that \(x_i \, R \, x_j\). This implies \(x_j \, R^{-1} \, x_i\).
+
+    However, since \(K\) has no least element with respect to \(R^{-1}\), it follows that \(R^{-1}\) is not a well-ordering on \(S\). This contradicts the assumption that both \(R\) and \(R^{-1}\) are well-orderings on \(S\). 
+
+    Thus, \(S\) must be finite.
+\end{proof}

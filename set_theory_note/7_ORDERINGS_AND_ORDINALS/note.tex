@@ -1,0 +1,142 @@
+\subsection{Material Notes}
+\subsubsection{ISOMORPHISMS}
+Around the Book Page 184, we also need to notice that two structures are isomorphic if and only if their \(\epsilon\text{-image}\) equals. Notice that I used \textbf{equals}, this is just by extension, the element wise equals.
+\begin{proof}
+    Let \((A, <_A)\) and \((B, <_B)\) be two isomorphic well-ordered structures with isomorphism \(f\). Let \(\alpha\) be the \(\varepsilon\)-image of the first, and \(\beta\) be the \(\varepsilon\)-image of the second. To show that \(\alpha = \beta\), we are essentially showing that for all \(x \in A\), \(E_A(x) = E_B(f(x))\). We can use transfinite induction.
+
+    Let \(P = \{x \mid E_A(x) = E_B(f(x))\}\). By transfinite induction, assume \(\mathrm{seg}(t) \subseteq P\). We want to show that \(t \in P\), meaning that \(E_A(t) = E_B(f(t))\).
+
+    We have:
+    \[
+    E_A(t) = E_A[[\mathrm{seg}(t)]] = \{E_A(x) \mid x < t\} = \{E_B(f(x)) \mid f(x) < f(t)\} = E_B[[\mathrm{seg}(f(t))]] = E_B(t).
+    \]
+    Thus, \(t \in P\).
+
+\end{proof}
+
+\subsection{ORDINAL NUMBERS}
+In Page 191, we have
+\begin{leftbar}
+    \textbf{Theorem 7L.} Let \(\alpha\) be any transitive set that is well-ordered by \(\in\). Then \(\alpha\) is an ordinal number; in fact, \(\alpha\) is the \(\in\)-image of \((\alpha, \in_\alpha)\).
+
+    \textbf{Proof.} Let \(E\) be the usual function from \(\alpha\) onto its \(\in\)-image. We can use transfinite induction to show that \(E\) is just the identity function on \(\alpha\). Note that for \(t \in \alpha\),
+    \[
+    x \in t \iff x \in_\alpha t
+    \]
+    because \(\alpha\) is a transitive set. As a consequence, we have \(\mathrm{seg} \, t = t\).
+
+    If the equation \(E(x) = x\) holds for all \(x \in \mathrm{seg} \, t\), then
+    \[
+    E(t) = \{E(x) \mid x \in_\alpha t\}
+    \]
+    \[
+    = \{x \mid x \in_\alpha t\}
+    \]
+    \[
+    = \mathrm{seg} \, t
+    \]
+    \[
+    = t.
+    \]
+\end{leftbar}
+
+    Yet while I was deducting it myself, I get the following:
+        \[
+        E(t) = E[\![\text{seg } t]\!] = E[\![t]\!] = \{E(t)\}
+        \]
+    Which gives that 
+        \[
+            E(t) \in E(t)
+        \]
+    Can you tell where the problem is?
+
+    The answer is that \(E[\![t]\!] \neq \{E(t)\}\), \(E[\![\{t\}]\!] = \{E(t)\}\), yet \(t \neq \{t\}\)
+
+    \subsection{Rank}
+    In Page 202, we have the following
+
+    \begin{leftbar}
+        \noindent
+    \textbf{Lemma 7R} Let \( \delta \) and \( \varepsilon \) be ordinal numbers; let \( F_\delta \) and \( F_\varepsilon \) be functions from Lemma 7Q. Then
+    \[
+    F_\delta(\alpha) = F_\varepsilon(\alpha)
+    \]
+    for all \( \alpha \in \delta \cap \varepsilon \).
+
+    \medskip
+    \noindent
+    \textit{Proof.} By the symmetry, we suppose that \( \delta \subseteq \varepsilon \). Hence \( \delta \subseteq \varepsilon \) and \( \delta \cap \varepsilon = \delta \). We will establish the equation \( F_\delta(\alpha) = F_\varepsilon(\alpha) \) by using transfinite induction in \( \langle \delta, \in_\delta \rangle \). Define
+    \[
+    B = \{\alpha \in \delta \mid F_\delta(\alpha) = F_\varepsilon(\alpha)\}.
+    \]
+    In order to show that \( B = \delta \), it suffices to show that \( B \) is ``\(\in_\delta\)-inductive,'' i.e., that
+    \[
+    \text{seg } \alpha \subseteq B \implies \alpha \in B
+    \]
+    for each \( \alpha \in \delta \).
+
+    \noindent
+    We calculate:
+    \[
+    \begin{aligned}
+    \text{seg } \alpha \subseteq B &\implies F_\delta(\beta) = F_\varepsilon(\beta) \quad \text{for } \beta \in \alpha \\
+    &\implies \bigcup \mathscr{P} F_\delta(\beta) \mid \beta \in \alpha \} = \bigcup \mathscr{P} F_\varepsilon(\beta) \mid \beta \in \alpha \} \\
+    &\implies F_\delta(\alpha) = F_\varepsilon(\alpha) \\
+    &\implies \alpha \in B.
+    \end{aligned}
+    \]
+    for \( \alpha \in \delta \). And so we are done.
+
+    \medskip
+    \noindent
+    In particular (by taking \( \delta = \varepsilon \)) we see that the function \( F_\delta \) from Lemma 7Q is unique. We can now unambiguously define \( V_\alpha \).
+
+    \medskip
+    \noindent
+    \textbf{Definition} Let \( \alpha \) be an ordinal number. Define \( V_\alpha \) to be the set \( F_\delta(\alpha) \), where \( \delta \) is any ordinal greater than \( \alpha \) (e.g., \( \delta = \alpha^+ \)).
+
+    \medskip
+    \noindent
+    \textbf{Theorem 7S} For any ordinal number \( \alpha \),
+    \[
+    V_\alpha = \bigcup \{\mathscr{P} V_\beta \mid \beta \in \alpha \}.
+    \]
+
+    \medskip
+    \noindent
+    \textit{Proof.} Let \( \delta = \alpha^+ \). Then \( V_\alpha = F_\delta(\alpha) \) and \( V_\beta = F_\delta(\beta) \) for \( \beta \in \alpha \). Hence the desired equation reduces to Lemma 7Q. \qed
+
+    \medskip
+    \noindent
+    \textbf{Lemma 7T} For any ordinal number \( \alpha \), \( V_\alpha \) is a transitive set.
+
+    \medskip
+    \noindent
+    \textit{Proof.} We would like to prove this by transfinite induction over the class of all ordinals. This can be done by utilizing Exercise 25. But we can also avoid that exercise by proving for each ordinal \( \delta \) that \( V_\alpha \) is a transitive set whenever \( \alpha \in \delta \). This requires only transfinite induction over \( \langle \delta, \in_\delta \rangle \).
+\end{leftbar}
+
+Here I provide an alternative proof:
+\begin{proof}
+    Let \( x \in y \in V_\alpha \), where
+    \[
+    V_\alpha = \bigcup \{ \mathscr{P}(V_\beta) \mid \beta \in \alpha \}.
+    \]
+    Then, by definition, there exists \( \beta \in \alpha \) such that \( y \in \mathscr{P}(V_\beta) \). 
+
+    \medskip
+
+    \noindent Since \( y \in \mathscr{P}(V_\beta) \), it follows that \( y \subseteq V_\beta \). Hence, because \( x \in y \), we conclude that \( x \in V_\beta \).
+
+    \medskip
+
+    \noindent Next, note that \( \{x\} \subseteq V_\beta \). To justify this step, recall that if \( a \in b \), then \( \{a\} \subseteq b \).
+
+    \medskip
+
+    \noindent Since \( \{x\} \subseteq V_\beta \), it follows that \( \{x\} \in \mathscr{P}(V_\beta) \), because any subset of \( V_\beta \) is an element of its power set \( \mathscr{P}(V_\beta) \).
+
+    \medskip
+
+    \noindent Finally, since \( \mathscr{P}(V_\beta) \in \bigcup \{\mathscr{P}(V_\beta) \mid \beta \in \alpha \} \), we conclude that \( x \in \bigcup \{\mathscr{P}(V_\beta) \mid \beta \in \alpha \} \). This holds because if \( q \in p \) and \( p \in n \), then \( q \in \bigcup n \).
+
+\end{proof}

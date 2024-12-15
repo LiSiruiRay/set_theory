@@ -1,5 +1,46 @@
 \subsection{Excercise Answers}
 \begin{question}
+    \textbf{E 4} Construct a one-to-one correspondence between the closed unit interval
+    \[
+    [0, 1] = \{x \in \mathbb{R} \mid 0 \leq x \leq 1\}
+    \]
+    and the open unit interval \((0, 1)\).  
+
+\end{question}
+\begin{proof}
+    To construct a one-to-one correspondence between the closed unit interval \([0, 1]\) and the open unit interval \((0, 1)\), we proceed as follows:
+
+    1. We first define a bijection between the sequences \(\{0, 1, 1/2, 1/3, 1/4, \ldots\}\) and \(\{1/2, 1/3, 1/4, \ldots\}\). Let \(f\) be defined as:
+    \[
+    f(x) = 
+    \begin{cases} 
+    1/2 & \text{if } x = 0, \\
+    1/3 & \text{if } x = 1, \\
+    \frac{1}{n + 2} & \text{if } x = \frac{1}{n} \text{ for } n \geq 2.
+    \end{cases}
+    \]
+    The inverse function \(f^{-1}\) is given by:
+    \[
+    f^{-1}\left(\frac{1}{x}\right) = 
+    \begin{cases} 
+    0 & \text{if } x = 2, \\
+    1 & \text{if } x = 3, \\
+    \frac{1}{x - 2} & \text{if } x > 3.
+    \end{cases}
+    \]
+
+    2. For the remaining points in \([0, 1]\) that are not in the sequence \(\{0, 1, 1/2, 1/3, 1/4, \ldots\}\), we define a function \(g\) by:
+    \[
+    g(x) = 
+    \begin{cases} 
+    f(x) & \text{if } x \text{ is in the sequence}, \\
+    x & \text{otherwise (identity map)}.
+    \end{cases}
+    \]
+    This function \(g\) forms a bijection between \([0, 1]\) and \((0, 1)\).
+
+\end{proof}
+\begin{question}
     \textbf{E 6} Let $\kappa$ be a nonzero cardinal number. Show that there does not exist a set to which every set of cardinality $\kappa$ belongs.
 \end{question}
 \begin{proof}
@@ -250,4 +291,137 @@ Theorem 6L in Page 149:
 
 \end{proof}
 
+\begin{question}
+    \textbf{E 18} 
+    Prove that the following statement is equivalent to the axiom of choice: For any set $\mathcal{A}$ whose members are nonempty sets, there is a function $f$ with domain $\mathcal{A}$ such that $f(X) \in X$ for all $X \in \mathcal{A}$.
+\end{question}
+\begin{proof}
+    To prove that the axiom of choice is equivalent to the given statement, we proceed as follows:
 
+    \textbf{Axiom of Choice:} The axiom of choice states that for any relation \( R \), there exists a function \( f \subset R \) such that \( \mathrm{dom} \, f = \mathrm{dom} \, R \).
+
+    \textbf{To Show:}
+    \[
+    \text{Axiom of Choice} \iff \text{Given Statement}
+    \]
+
+    \textbf{(Forward Implication):} Assume the axiom of choice holds. Let 
+    \[
+    R := \{ \langle X, x \rangle \mid x \in X \in \mathcal{A} \}.
+    \]
+    By the axiom of choice, there exists a function \( f \subset R \) such that \( \mathrm{dom} \, f = \mathrm{dom} \, R = \mathcal{A} \). This function \( f \) satisfies the required condition: for all \( X \in \mathcal{A} \), \( f(X) \in X \).
+
+    \textbf{(Reverse Implication):} Assume the given statement holds. Let \( R \) be a relation and \( K = \mathrm{dom} \, R \). Define
+    \[
+    \mathcal{A} = \{ X_{x_r} \subseteq K \mid x_r \in \mathrm{ran} R, \forall x \in X, xRr_x \text{ and } X \neq \emptyset \}.
+    \]
+    By the assumption, there exists a function \( f \) such that for all \( X \in \mathcal{A} \), \( f(X) \in X \). This function \( f \) has \( \mathrm{dom} \, f = \mathcal{A} = \mathrm{dom} \, R \).
+
+\end{proof}
+
+\begin{question}
+    \textbf{E 19} 
+    Assume that $H$ is a function with finite domain $I$ and that $H(i)$ is nonempty for each $i \in I$. Without using the axiom of choice, show that there is a function $f$ with domain $I$ such that $f(i) \in H(i)$ for each $i \in I$. \textit{[Suggestion: Use induction on $\text{card } I$.]}
+\end{question}
+
+\begin{question}
+    \textbf{E 20 } 
+    Assume that \( A \) is a nonempty set and \( R \) is a relation such that 
+    \[
+    \forall x \in A, \exists y \in A \text{ such that } yRx.
+    \]
+    Show that there exists a function \( f: \omega \to A \) with 
+    \[
+    f(n^+) R f(n) \quad \text{for all } n \in \omega.
+    \]
+\end{question}
+\begin{proof}
+    Given that \( R \subset A \times A \) is a "surjective" relation on \( A \), we can define \( R' = R^{-1} := \{ \langle x, y \rangle \mid \langle y, x \rangle \in R \} \), which is also a relation on \( A \). By the axiom of choice, there exists a function \( g \subset R' \) such that \( \operatorname{dom} g = \operatorname{dom} R' = A\).
+
+    Since \( A \) is nonempty, it contains at least one element. Let \( x \in A \) be such an element. We can define a function \( f: \omega \to A \) recursively as follows:
+
+    \begin{enumerate}
+        \item \( f(0) = x \).
+        \item \( f(n^+) = g(f(n)) \), where \( g \) is the function induced by \( R' \).
+    \end{enumerate}
+
+    Since \( g \) is a function derived from the inverse relation \( R' \), it follows that \( f(n^+) \, R \, f(n) \) for all \( n \in \omega \).
+
+    By a simple induction, we can also show that \( \operatorname{dom} f = \omega \), ensuring that \( f \) is defined on all natural numbers.
+\end{proof}
+\begin{question}
+    \textbf{E 21}
+    \textbf{Teichmüller--Tukey Lemma:} Assume that \(\mathcal{A}\) is a nonempty set such that for every set \(B\),
+    \[
+    B \in \mathcal{A} \iff \text{every finite subset of } B \text{ is a member of } \mathcal{A}.
+    \]
+    Show that \(\mathcal{A}\) has a maximal element, i.e., an element that is not a subset of any other element of \(\mathcal{A}\).
+\end{question}
+\textbf{Zorn's Lemma:}
+Let \(\mathcal{A}\) be a set such that for every chain \(\mathcal{B} \subseteq \mathcal{A}\), we have \(\bigcup \mathcal{B} \in \mathcal{A}\). (\(\mathcal{B}\) is called a \textbf{chain} if for any \(C\) and \(D\) in \(\mathcal{B}\), either \(C \subseteq D\) or \(D \subseteq C\).) Then \(\mathcal{A}\) contains a maximal element \(M\) such that \(M\) is not a subset of any other set in \(\mathcal{A}\).
+
+Our goal is to verify the conditions of Zorn's Lemma for the set \(\mathcal{A}\), and then conclude that \(\mathcal{A}\) contains a maximal element.
+
+To apply Zorn's Lemma, we need to show that for every chain \(\mathcal{B} \subseteq \mathcal{A}\), the union \(\bigcup \mathcal{B}\) is in \(\mathcal{A}\). This means we need to prove:
+\begin{enumerate}
+    \item \(\mathcal{B}\) is a chain in \(\mathcal{A}\).
+    \item \(\bigcup \mathcal{B} \in \mathcal{A}\).
+\end{enumerate}
+
+Since \(\mathcal{B}\) is any chain in \(\mathcal{A}\), we focus on proving that \(\bigcup \mathcal{B} \in \mathcal{A}\).
+
+According to the defining property of \(\mathcal{A}\):
+
+\[
+B \in \mathcal{A} \iff \text{every finite subset of } B \text{ is in } \mathcal{A}.
+\]
+
+So, to show that \(\bigcup \mathcal{B} \in \mathcal{A}\), we need to demonstrate that \textbf{every finite subset of \(\bigcup \mathcal{B}\) is in \(\mathcal{A}\)}.
+\begin{proof}
+    Let \(\mathcal{B}\) be a chain s.t. \(\mathcal{B} \subseteq \mathcal{A}\). Let \(F\) be any finite subset of \(\bigcup \mathcal{B}\). For each element \(x \in F\), there exists a set \(B_x \in \mathcal{B}\) such that \(x \in B_x\). This is because \(x\) is in \(\bigcup \mathcal{B}\), so it must belong to at least one member of \(\mathcal{B}\).
+    
+    Since \(\mathcal{B}\) is a chain, the sets \(B_x\) are comparable by inclusion. For any two elements \(x, y \in F\), either \(B_x \subseteq B_y\) or \(B_y \subseteq B_x\). Because \(F\) is finite, the collection \(\{B_x : x \in F\}\) is finite. We can find a maximal set \(B_0\) among \(\{B_x : x \in F\}\) with respect to inclusion. 
+    
+    Since \(B_0 \in \mathcal{A}\), and \(F \subseteq B_0\), we can conclude that \(F \in \mathcal{A}\). Thus \(\bigcup \mathcal{B} \in \mathcal{A} \), which satisfies conditions for zorn's lemma.
+\end{proof}
+
+\begin{question}
+    \textbf{E 22} 
+    Show that the following statement is another equivalent version of the axiom of choice: For any set \(A\) there is a function \(F\) with \(\operatorname{dom} F = \bigcup A\) and such that \(x \in F(x) \in A\) for all \(x \in \bigcup A\).
+\end{question}
+\begin{proof}
+    To show: \textbf{Axiom of Choice (AC)} \(\iff\) statement.
+
+    \((\Rightarrow)\) Assume \(A\) is a set. Consider the relation \(R = \{ \langle x, X \rangle \mid X \in A, x \in X \}\). By the Axiom of Choice, there exists a function \(f \subseteq R\) such that \(\operatorname{dom} f = \operatorname{dom} R\). Clearly, \(\operatorname{dom} R = A\). Additionally, for all \(x \in \bigcup A\), we have \(x \in f(x) \in A\). Thus, we have found such a function \(f\).
+
+    \((\Leftarrow)\) Let \(R\) be a relation. Let \(K = \operatorname{dom} R\). Define
+    \[
+    A = \{X_r \subseteq K \mid x_r \in \operatorname{ran} R, \forall x \in X_r, x R x_r\}.
+    \]
+    By assumption, there exists a function \(f\) with \(\operatorname{dom} f = \bigcup A = \operatorname{dom} R\).
+
+\end{proof}
+
+\begin{question}
+    \textbf{E 26} 
+    Prove the following generalization of Theorem 6Q: If every member of a set \(\mathcal{A}\) has cardinality \(\kappa\) or less, then
+    \[
+    \mathrm{card} \bigcup \mathcal{A} \leq (\mathrm{card} \, \mathcal{A}) \cdot \kappa.
+    \]
+\end{question}
+
+\begin{question}
+    \textbf{E 27} 
+    \begin{enumerate}
+        \item Let \( A \) be a collection of circular disks in the plane, no two of which intersect. Show that \( A \) is countable.
+        \item Let \( B \) be a collection of circles in the plane, no two of which intersect. Need \( B \) be countable?
+        \item Let \( C \) be a collection of figure eights in the plane, no two of which intersect. Need \( C \) be countable?
+    \end{enumerate}
+\end{question}
+\begin{proof} Use Rational numbers.
+    \begin{enumerate}
+        \item Every disck include at least one rational number. If it is countable, then there must be two circle containing same rational number, contardiction to pair wise disjoint.
+        \item No. Consider \(B = \{B_r(0) | r \in (0, 1]\}\)
+        \item Yes. Pick one eight shape in the conllections. Three conditions for second eight, either in one of the circle of first eight or outside of the first eight: if all the eight is pair wise outside, then it is the same as eight shaped disk, appying the first arguement it is countable. If on the other hand in one of the circles, then the second disk's diameter (greatest length) is decreased by 2 wetice at least. This will form a sequence for eight shapes that is countable (since there is at least one rational number that is between two shapes.). Or in another way we can argue that there must be a rational number included in the difference of two eight, thus must be countable since difference shape is more than eight shape.
+    \end{enumerate}
+\end{proof}

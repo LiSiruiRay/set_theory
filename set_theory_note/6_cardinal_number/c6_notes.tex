@@ -138,3 +138,47 @@ In Page 156, for the Theorem 6N:
 
 where \(C \neq \emptyset \).
 Clearly since composition of bijections are bijection, \(A\) and \(A - C\) has a bijection.
+
+\subsubsection{COUNTABLE SETS}
+Page 160:
+\begin{leftbar}
+    \textbf{Theorem 6Q} \textit{A countable union of countable sets is countable. That is, if \(\mathcal{A}\) is countable and if every member of \(\mathcal{A}\) is a countable set, then \(\bigcup \mathcal{A}\) is countable.}
+
+    \textbf{Proof:} We may suppose that \(\emptyset \notin \mathcal{A}\), for otherwise we could simply remove it without affecting \(\bigcup \mathcal{A}\). We may further suppose that \(\mathcal{A} \neq \emptyset\), since \(\bigcup \emptyset\) is certainly countable. Thus, \(\mathcal{A}\) is a countable (but nonempty) set from \(\omega \times \omega\) onto \(\bigcup \mathcal{A}\). We already know of functions from \(\omega\) onto \(\omega \times \omega\), and the composition will map \(\omega\) onto \(\bigcup \mathcal{A}\), thereby showing that \(\bigcup \mathcal{A}\) is countable.
+
+    Since \(\mathcal{A}\) is countable but nonempty, there is a function \(G\) from \(\omega\) onto \(\mathcal{A}\). Informally, we may write
+    \[
+    \mathcal{A} = \{G(0), G(1), \ldots\}.
+    \]
+    (Here \(G\) might not be one-to-one, so there may be repetitions in this enumeration.) We are given that each set \(G(m)\) is countable and nonempty.
+
+    Hence for each \(m\) there is a function from \(\omega\) onto \(G(m)\). We must use the axiom of choice to select such a function for each \(m\).
+
+    Because the axiom of choice is a recent addition to our repertoire, we will describe its use here in some detail. Let \(H: \omega \to \omega(\bigcup \mathcal{A})\) be defined by
+    \[
+    H(m) = \{g \mid g \text{ is a function from } \omega \text{ onto } G(m)\}.
+    \]
+    We know that \(H(m)\) is nonempty for each \(m\). Hence there is a function \(F\) with domain \(\omega\) such that for each \(m\), \(F(m)\) is a function from \(\omega\) onto \(G(m)\).
+
+    To conclude the proof we have only to let \(f(m, n) = F(m)(n)\). Then \(f\) is a function from \(\omega \times \omega\) onto \(\bigcup \mathcal{A}\).
+
+\end{leftbar}
+\raynote{Intuation on countable set of countable sets is countable}
+
+To gain a more intuitive understanding, observe the illustration: Since \(\mathcal{A}\) is countable, it has an enumeration given by \(\mathcal{A} = \{G(0), G(1), \ldots\} = \{G_0, G_1, \ldots\}\), where each \(G_m\) is another countable set. More explicitly, we can represent each set as follows:
+\[
+G_0 = \{G_0^0, G_0^1, G_0^2, G_0^3, \ldots, G_0^m, \ldots\}
+\]
+\[
+G_1 = \{G_1^0, G_1^1, G_1^2, G_1^3, \ldots, G_1^m, \ldots\}
+\]
+\[
+\vdots
+\]
+\[
+G_n = \{G_n^0, G_n^1, G_n^2, G_n^3, \ldots, G_n^m, \ldots\}
+\]
+\[
+\vdots
+\]
+Thus, this construction clearly forms an injection into \(\omega \times \omega\).
